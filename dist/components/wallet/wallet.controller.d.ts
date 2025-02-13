@@ -1,28 +1,3 @@
-/// <reference types="mongoose/types/aggregate" />
-/// <reference types="mongoose/types/callback" />
-/// <reference types="mongoose/types/collection" />
-/// <reference types="mongoose/types/connection" />
-/// <reference types="mongoose/types/cursor" />
-/// <reference types="mongoose/types/document" />
-/// <reference types="mongoose/types/error" />
-/// <reference types="mongoose/types/expressions" />
-/// <reference types="mongoose/types/helpers" />
-/// <reference types="mongoose/types/middlewares" />
-/// <reference types="mongoose/types/indexes" />
-/// <reference types="mongoose/types/models" />
-/// <reference types="mongoose/types/mongooseoptions" />
-/// <reference types="mongoose/types/pipelinestage" />
-/// <reference types="mongoose/types/populate" />
-/// <reference types="mongoose/types/query" />
-/// <reference types="mongoose/types/schemaoptions" />
-/// <reference types="mongoose/types/schematypes" />
-/// <reference types="mongoose/types/session" />
-/// <reference types="mongoose/types/types" />
-/// <reference types="mongoose/types/utility" />
-/// <reference types="mongoose/types/validation" />
-/// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
-/// <reference types="mongoose/types/inferschematype" />
 import { WalletService } from './wallet.service';
 import { TransactionDTO, UpdateTransactionDTO } from './dto/transaction.dto';
 import { NetworkDTO } from './dto/coinNetwork.dto';
@@ -169,11 +144,11 @@ export declare class WalletController {
         $clone: () => import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>;
-        $getAllSubdocs: () => import("mongoose").Document<any, any, any>[];
+        $getAllSubdocs: () => import("mongoose").Document[];
         $ignore: (path: string) => void;
         $isDefault: (path: string) => boolean;
         $isDeleted: (val?: boolean) => boolean;
-        $getPopulatedDocs: () => import("mongoose").Document<any, any, any>[];
+        $getPopulatedDocs: () => import("mongoose").Document[];
         $inc: (path: string | string[], val?: number) => import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>;
@@ -181,11 +156,16 @@ export declare class WalletController {
         $isValid: (path: string) => boolean;
         $locals: import("mongoose").FlattenMaps<Record<string, unknown>>;
         $markValid: (path: string) => void;
-        $model: <ModelType = import("mongoose").Model<unknown, {}, {}, {}, import("mongoose").Document<unknown, {}, unknown> & Required<{
-            _id: unknown;
-        }>, any>>(name: string) => ModelType;
-        $op: "remove" | "save" | "validate";
-        $session: (session?: import("mongodb").ClientSession) => import("mongodb").ClientSession;
+        $model: {
+            <ModelType = import("mongoose").Model<unknown, {}, {}, {}, import("mongoose").Document<unknown, {}, unknown> & Required<{
+                _id: unknown;
+            }>, any>>(name: string): ModelType;
+            <ModelType = import("mongoose").Model<import("../../schema/StakingPlan/staking-plan.schema").StakingPlan, {}, {}, {}, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+                _id: string;
+            }>, any>>(): ModelType;
+        };
+        $op: "save" | "validate" | "remove" | null;
+        $session: (session?: import("mongoose").ClientSession | null) => import("mongoose").ClientSession | null;
         $set: {
             (path: string | Record<string, any>, val: any, type: any, options?: import("mongoose").DocumentSetOptions): import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
                 _id: string;
@@ -199,15 +179,15 @@ export declare class WalletController {
         };
         $where: import("mongoose").FlattenMaps<Record<string, unknown>>;
         baseModelName?: string;
-        collection: import("mongoose").Collection<import("bson").Document>;
+        collection: import("mongoose").Collection;
         db: import("mongoose").FlattenMaps<import("mongoose").Connection>;
-        deleteOne: (options?: import("mongoose").QueryOptions<unknown>) => Promise<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+        deleteOne: (options?: import("mongoose").QueryOptions) => Promise<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>>;
         depopulate: (path?: string | string[]) => import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>;
-        directModifiedPaths: () => string[];
+        directModifiedPaths: () => Array<string>;
         equals: (doc: import("mongoose").Document<unknown, any, any>) => boolean;
         errors?: import("mongoose").Error.ValidationError;
         get: {
@@ -225,51 +205,63 @@ export declare class WalletController {
             _id: string;
         }>;
         invalidate: {
-            <T_1 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_1, errorMsg: string | NativeError, value?: any, kind?: string): NativeError;
-            (path: string, errorMsg: string | NativeError, value?: any, kind?: string): NativeError;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T, errorMsg: string | NativeError, value?: any, kind?: string): NativeError | null;
+            (path: string, errorMsg: string | NativeError, value?: any, kind?: string): NativeError | null;
         };
         isDirectModified: {
-            <T_2 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_2 | T_2[]): boolean;
-            (path: string | string[]): boolean;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T | T[]): boolean;
+            (path: string | Array<string>): boolean;
         };
         isDirectSelected: {
-            <T_3 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_3): boolean;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T): boolean;
             (path: string): boolean;
         };
         isInit: {
-            <T_4 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_4): boolean;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T): boolean;
             (path: string): boolean;
         };
         isModified: {
-            <T_5 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path?: T_5 | T_5[]): boolean;
-            (path?: string | string[]): boolean;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path?: T | T[], options?: {
+                ignoreAtomics?: boolean;
+            } | null): boolean;
+            (path?: string | Array<string>, options?: {
+                ignoreAtomics?: boolean;
+            } | null): boolean;
         };
         isNew: boolean;
         isSelected: {
-            <T_6 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_6): boolean;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T): boolean;
             (path: string): boolean;
         };
         markModified: {
-            <T_7 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_7, scope?: any): void;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T, scope?: any): void;
             (path: string, scope?: any): void;
+        };
+        model: {
+            <ModelType = import("mongoose").Model<unknown, {}, {}, {}, import("mongoose").Document<unknown, {}, unknown> & Required<{
+                _id: unknown;
+            }>, any>>(name: string): ModelType;
+            <ModelType = import("mongoose").Model<import("../../schema/StakingPlan/staking-plan.schema").StakingPlan, {}, {}, {}, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+                _id: string;
+            }>, any>>(): ModelType;
         };
         modifiedPaths: (options?: {
             includeChildren?: boolean;
-        }) => string[];
+        }) => Array<string>;
         overwrite: (obj: import("mongoose").AnyObject) => import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>;
-        $parent: () => import("mongoose").Document<any, any, any>;
+        $parent: () => import("mongoose").Document | undefined;
         populate: {
-            <Paths_1 = {}>(path: string | import("mongoose").PopulateOptions | (string | import("mongoose").PopulateOptions)[]): Promise<import("mongoose").MergeType<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+            <Paths = {}>(path: string | import("mongoose").PopulateOptions | (string | import("mongoose").PopulateOptions)[]): Promise<import("mongoose").MergeType<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
                 _id: string;
-            }>, Paths_1>>;
-            <Paths_2 = {}>(path: string, select?: string | import("mongoose").AnyObject, model?: import("mongoose").Model<any, {}, {}, {}, any, any>, match?: import("mongoose").AnyObject, options?: import("mongoose").PopulateOptions): Promise<import("mongoose").MergeType<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+            }>, Paths>>;
+            <Paths = {}>(path: string, select?: string | import("mongoose").AnyObject, model?: import("mongoose").Model<any>, match?: import("mongoose").AnyObject, options?: import("mongoose").PopulateOptions): Promise<import("mongoose").MergeType<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
                 _id: string;
-            }>, Paths_2>>;
+            }>, Paths>>;
         };
         populated: (path: string) => any;
-        replaceOne: (replacement?: import("mongoose").AnyObject, options?: import("mongoose").QueryOptions<unknown>) => import("mongoose").Query<any, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+        replaceOne: (replacement?: import("mongoose").AnyObject, options?: import("mongoose").QueryOptions | null) => import("mongoose").Query<any, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>, {}, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
@@ -279,15 +271,15 @@ export declare class WalletController {
         }>>;
         schema: import("mongoose").FlattenMaps<import("mongoose").Schema<any, import("mongoose").Model<any, any, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, {
             [x: string]: any;
-        }, import("mongoose").Document<unknown, {}, {
+        }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
             [x: string]: any;
-        }> & {
+        }>> & import("mongoose").FlatRecord<{
             [x: string]: any;
-        } & Required<{
+        }> & Required<{
             _id: unknown;
         }>>>;
         set: {
-            <T_8 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_8, val: import("../../schema/StakingPlan/staking-plan.schema").StakingPlan[T_8], type: any, options?: import("mongoose").DocumentSetOptions): import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T, val: import("../../schema/StakingPlan/staking-plan.schema").StakingPlan[T], type: any, options?: import("mongoose").DocumentSetOptions): import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
                 _id: string;
             }>;
             (path: string | Record<string, any>, val: any, type: any, options?: import("mongoose").DocumentSetOptions): import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
@@ -301,51 +293,45 @@ export declare class WalletController {
             }>;
         };
         toJSON: {
-            <T_9 = import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+            <T = import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
                 _id: string;
-            }>>(options?: import("mongoose").ToObjectOptions<import("mongoose").Document<unknown, {}, unknown> & Required<{
-                _id: unknown;
-            }>> & {
+            }>>(options?: import("mongoose").ToObjectOptions & {
                 flattenMaps?: true;
-            }): import("mongoose").FlattenMaps<T_9>;
-            <T_10 = import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+            }): import("mongoose").FlattenMaps<T>;
+            <T = import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
                 _id: string;
-            }>>(options: import("mongoose").ToObjectOptions<import("mongoose").Document<unknown, {}, unknown> & Required<{
-                _id: unknown;
-            }>> & {
+            }>>(options: import("mongoose").ToObjectOptions & {
                 flattenMaps: false;
-            }): T_10;
+            }): T;
         };
-        toObject: <T_11 = import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+        toObject: <T = import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
-        }>>(options?: import("mongoose").ToObjectOptions<import("mongoose").Document<unknown, {}, unknown> & Required<{
-            _id: unknown;
-        }>>) => import("mongoose").Require_id<T_11>;
+        }>>(options?: import("mongoose").ToObjectOptions) => import("mongoose").Require_id<T>;
         unmarkModified: {
-            <T_12 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T_12): void;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(path: T): void;
             (path: string): void;
         };
         updateOne: (update?: import("mongoose").UpdateWithAggregationPipeline | import("mongoose").UpdateQuery<import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
-        }>>, options?: import("mongoose").QueryOptions<unknown>) => import("mongoose").Query<any, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
+        }>>, options?: import("mongoose").QueryOptions | null) => import("mongoose").Query<any, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>, {}, import("mongoose").Document<unknown, {}, import("../../schema/StakingPlan/staking-plan.schema").StakingPlan> & import("../../schema/StakingPlan/staking-plan.schema").StakingPlan & Required<{
             _id: string;
         }>, "find">;
         validate: {
-            <T_13 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(pathsToValidate?: T_13 | T_13[], options?: import("mongoose").AnyObject): Promise<void>;
-            (pathsToValidate?: import("mongoose").PathsToValidate, options?: import("mongoose").AnyObject): Promise<void>;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(pathsToValidate?: T | T[], options?: import("mongoose").AnyObject): Promise<void>;
+            (pathsToValidate?: import("mongoose").pathsToValidate, options?: import("mongoose").AnyObject): Promise<void>;
             (options: {
                 pathsToSkip?: import("mongoose").pathsToSkip;
             }): Promise<void>;
         };
         validateSync: {
             (options: {
-                [k: string]: any;
                 pathsToSkip?: import("mongoose").pathsToSkip;
-            }): import("mongoose").Error.ValidationError;
-            <T_14 extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(pathsToValidate?: T_14 | T_14[], options?: import("mongoose").AnyObject): import("mongoose").Error.ValidationError;
-            (pathsToValidate?: import("mongoose").PathsToValidate, options?: import("mongoose").AnyObject): import("mongoose").Error.ValidationError;
+                [k: string]: any;
+            }): import("mongoose").Error.ValidationError | null;
+            <T extends keyof import("../../schema/StakingPlan/staking-plan.schema").StakingPlan>(pathsToValidate?: T | T[], options?: import("mongoose").AnyObject): import("mongoose").Error.ValidationError | null;
+            (pathsToValidate?: import("mongoose").pathsToValidate, options?: import("mongoose").AnyObject): import("mongoose").Error.ValidationError | null;
         };
         planId: number;
         duration: number;
